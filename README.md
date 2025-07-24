@@ -273,44 +273,6 @@ mtcars %>%
 
 ---
 
-# ---- ライブラリ読み込み ----
-library(ggplot2)   # グラフ作成
-library(dplyr)     # データ操作
-
-# ---- 組み込みデータセットの確認 ----
-head(mtcars)
-
-# ---- 散布図 ----
-ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_point(color = "steelblue", size = 3) +
-  ggtitle("車の重さ vs 燃費") +
-  xlab("重量（wt）") +
-  ylab("燃費（mpg）")
-
-# ---- 棒グラフ ----
-mtcars %>%
-  mutate(cyl = as.factor(cyl)) %>%
-  ggplot(aes(x = cyl)) +
-  geom_bar(fill = "orange", color = "black") +
-  ggtitle("シリンダー数の分布") +
-  xlab("シリンダー数") +
-  ylab("台数")
-
-# ---- ヒストグラム ----
-ggplot(mtcars, aes(x = mpg)) +
-  geom_histogram(binwidth = 3, fill = "darkgreen", color = "white") +
-  ggtitle("燃費（mpg）のヒストグラム") +
-  xlab("Miles per Gallon")
-
-# ---- 箱ひげ図 ----
-ggplot(mtcars, aes(x = as.factor(gear), y = mpg)) +
-  geom_boxplot(fill = "purple", color = "black") +
-  ggtitle("ギア数ごとの燃費分布") +
-  xlab("ギア数") +
-  ylab("燃費（mpg）")
-
----
-
 `%>%` は \*\*R の dplyr パッケージなどで使われる「パイプ演算子」\*\*です。
 意味は：
 
