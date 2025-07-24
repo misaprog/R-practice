@@ -149,3 +149,10 @@ source('first_script.R')
 | 箱ひげ図   | `geom_boxplot()`             | 分布と外れ値 |
 | ヒストグラム | `geom_histogram()`           | 頻度分布   |
 
+---
+ヒント：おすすめのデータセット（Kaggle内）
+titanic（生存分析に棒グラフなど）
+
+iris（有名な花のデータ、散布図などに最適）
+
+penguins（カテゴリ別プロットにぴったり）
