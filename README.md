@@ -151,6 +151,7 @@ source('first_script.R')
 
 ---
 ヒント：おすすめのデータセット（Kaggle内）
+
 titanic（生存分析に棒グラフなど）
 
 iris（有名な花のデータ、散布図などに最適）
