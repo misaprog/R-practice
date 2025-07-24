@@ -472,6 +472,92 @@ ggplot(aes(x=wt), data=mtcars) +
 
 ---
 
+---
+
+## 🎯 演習の目的
+
+* R の `iris` データセットを使って、`ggplot2` の拡張パッケージ **`GGally`** の `ggpairs()` 関数を利用
+* データの**変数間の関係性**や**相関関係**を視覚的に一目で確認できるプロットを作成
+* プロットの要素（散布図・相関係数・分布図）を理解する
+
+---
+
+## 🧩 1. 必要なパッケージのインストール
+
+以下のコマンドは、依存関係も含めて手動で特定の古いバージョンのパッケージをインストールするものです（通常は不要ですが、特定環境では必要な場合もあります）。
+
+```r
+install.packages("https://cran.r-project.org/src/contrib/Archive/patchwork/patchwork_1.1.0.tar.gz", repos = NULL, type = "source", dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/broom.helpers/broom.helpers_1.4.0.tar.gz", repos = NULL, type = "source", dependencies = TRUE)
+install.packages("https://cran.r-project.org/src/contrib/Archive/ggstats/ggstats_0.5.0.tar.gz", repos = NULL, type = "source", dependencies = TRUE)
+```
+
+> ⚠️ 通常は `install.packages("GGally")` だけで十分です。
+
+---
+
+## 🧪 2. `iris` データセットの読み込み
+
+```r
+library(datasets)
+data(iris)
+```
+
+🌼 `iris` は、3種類のアヤメの花（Setosa, Versicolor, Virginica）の花びら・がくの長さ/幅データを含む組み込みデータセットです。
+
+---
+
+## 📦 3. `GGally` の読み込みと `ggpairs()` の実行
+
+```r
+library(GGally)
+ggpairs(iris, mapping=ggplot2::aes(colour = Species))
+```
+
+### ✅ `ggpairs()` でできること：
+
+* **対角線上**：各変数の**分布図**（ヒストグラム）
+* **対角線の下**：変数同士の**散布図**（相関関係を視覚化）
+* **対角線の上**：変数同士の**相関係数**
+* **色分け**：Species によって色分けされ、比較しやすい
+
+---
+
+## 🔍 4. プロットの見方
+
+* `Sepal.Length` と `Sepal.Width` の関係を見ると、**Setosa** がはっきり他の種と違うことがわかる
+* 相関係数が `1` に近い → 強い相関（例えば `Petal.Length` と `Petal.Width`）
+* **分類問題のヒント**にもなる（教師あり学習に使える）
+
+---
+
+## 📊 今後の応用
+
+このようなプロットは、以下に活用されます：
+
+| 活用シーン                   | 説明                    |
+| ----------------------- | --------------------- |
+| EDA（探索的データ分析）           | データのパターンや傾向を事前に把握     |
+| 特徴選択（Feature Selection） | 相関が高すぎる特徴を減らす判断材料に    |
+| モデル理解                   | 可視化により、分類や回帰の前に関係性を把握 |
+
+---
+
+## 💡補足：Zoom で拡大
+
+RStudioのプロットウィンドウの右上にある「Zoom」ボタンをクリックすると、大きく見やすい表示になります。
+
+---
+
+## ✅ まとめ
+
+* `GGally::ggpairs()` は、データの全体像を一気に可視化するための**強力な関数**
+* 学習中のデータサイエンティストには必須級
+* `iris` のような小規模な分類データセットとの相性が抜群
+
+---
+
+
 
 
 
