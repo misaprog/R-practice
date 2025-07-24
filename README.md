@@ -355,5 +355,123 @@ select(filter(df, age > 30), name, age)
 ---
 
 
+---
+
+## ✅ この演習の目的
+
+* `ggplot2` パッケージを使って基本的なグラフを作成する方法を学ぶ
+* `mtcars` データセットの可視化を通じて、**散布図・ボックスプロット・ヒストグラム** を描く
+* 軸のラベルやタイトルをカスタマイズして、見やすく伝わるグラフを作成する
+
+---
+
+## 🔧 使用するコードとその意味（ポイント付き）
+
+### ① データの読み込みと確認
+
+```r
+library(datasets)       # datasetsパッケージを読み込み
+data(mtcars)            # mtcarsデータセットを読み込む
+head(mtcars, 5)         # 最初の5行を表示
+```
+
+🧠 `mtcars` はRに最初から入っているデータ。自動車のスペック（燃費、重量、馬力など）が入っています。
+
+---
+
+### ② `ggplot2` パッケージを使った散布図
+
+```r
+library(ggplot2)
+
+ggplot(aes(x=disp, y=mpg), data=mtcars) + 
+  geom_point()
+```
+
+🧠 **disp**（排気量）と **mpg**（燃費）の関係を見る散布図
+→ `geom_point()` が **点（scatter plot）** を描きます。
+
+---
+
+### ③ グラフにタイトルを追加
+
+```r
++ ggtitle("displacement vs miles per gallon")
+```
+
+🧠 `ggtitle()` を使ってグラフ上部に説明を追加。
+
+---
+
+### ④ 軸の名前を変更
+
+```r
++ labs(x = "Displacement", y = "Miles per Gallon")
+```
+
+🧠 `labs()` は **x軸・y軸のラベル** を設定できます。
+
+---
+
+### ⑤ ボックスプロットの作成（vs別に燃費を比較）
+
+```r
+mtcars$vs <- as.factor(mtcars$vs)  # vsをカテゴリ変数に変換
+
+ggplot(aes(x=vs, y=mpg), data=mtcars) + 
+  geom_boxplot()
+```
+
+🧠 vsはエンジン型（0=V型, 1=直列）
+→ **mpg（燃費）** の分布を **エンジン型ごと** に表示。
+
+---
+
+### ⑥ 色付きボックスプロット + 凡例非表示
+
+```r
+ggplot(aes(x=vs, y=mpg, fill = vs), data = mtcars) + 
+  geom_boxplot(alpha=0.3) + 
+  theme(legend.position="none")
+```
+
+🧠 `fill = vs` で色分け、`alpha=0.3` で透明度調整
+→ `theme()` で凡例（legend）を非表示
+
+---
+
+### ⑦ ヒストグラム（wt: 車の重量）
+
+```r
+ggplot(aes(x=wt), data=mtcars) + 
+  geom_histogram(binwidth=0.5)
+```
+
+🧠 `wt`（weight）に基づいたヒストグラム
+→ `binwidth=0.5` で棒の幅を設定
+
+---
+
+## 🧪 このラボを通じて得られること
+
+| 学べること          | 詳細                               |
+| -------------- | -------------------------------- |
+| `ggplot2` の使い方 | `ggplot() + geom_...()` の構造が身につく |
+| 軸やタイトルの変更      | `labs()` と `ggtitle()` を組み合わせる   |
+| データの型変換        | `as.factor()` を使ってカテゴリ変数に変換      |
+| 視覚的に意味のある色付け   | `fill=` や `alpha=` でグラフを強調       |
+| 基本的な統計グラフの種類   | 散布図・ボックスプロット・ヒストグラムの違い           |
+
+---
+
+## 💬 おすすめ：この後のステップ
+
+* 他の変数を使ってプロットを試してみましょう（`hp`, `wt`, `gear`など）
+* `facet_wrap()` でカテゴリごとの分割グラフを作る
+* `theme_minimal()` などテーマ変更で見た目をカスタマイズ
+
+---
+
+
 
 
