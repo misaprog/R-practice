@@ -1,6 +1,6 @@
+以下は、読みやすく整理し直した **R学習記録用のREADME.md形式** です。表の表示や改行を整え、MarkdownとしてGitHub上で見やすくなるように調整しました。
 
-
-
+---
 
 ````markdown
 # 📘 R-practice
